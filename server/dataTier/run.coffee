@@ -20,7 +20,10 @@ global.logger = logger
 logger.info "Data tier starting"
 jobs.process "email", (job, done) ->
 	logger.info "In job queue", job.data
-	done()
+	setTimeout( () ->
+		logger.info "completed #{job.id}"
+		done()
+	, 10000)
 
 process.once "SIGINT", (sig) ->
 	jobs.shutdown ((err) ->
@@ -30,6 +33,6 @@ process.once "SIGINT", (sig) ->
 
 process.once "SIGTERM", (sig) ->
 	jobs.shutdown ((err) ->
-		logger.info "Kue is shut down.", err or ""
+		logger.info "DataTier is shut down.", err or ""
 		process.exit 0
 	), 5000
