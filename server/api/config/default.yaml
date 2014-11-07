@@ -1,0 +1,14 @@
+# have to be indented by spaces!!
+
+logger:
+    console_log_level: debug
+    file_log_level: WARN
+
+main:
+    listen_ip: '127.0.0.1'
+    listen_port: 3000
+    key: '/etc/ssl/self-signed/server.key'
+    cert: '/etc/ssl/self-signed/server.crt'
+    ca: '/etc/ssl/self-signed/intermediate.crt'
+    maxSockets: 15
+    baseURL: 'http://localhost:3000'
