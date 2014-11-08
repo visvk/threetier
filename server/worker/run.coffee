@@ -1,7 +1,9 @@
+cluster = require('cluster')
 winston = require 'winston'
 config = require "config"
 kue = require("kue")
 jobs = kue.createQueue()
+numCPUs = require('os').cpus().length
 
 process.title = "Data tier"
 
@@ -17,13 +19,27 @@ logger = new (winston.Logger)(
 
 global.logger = logger
 
-logger.info "Data tier starting"
-jobs.process "email", (job, done) ->
-	logger.info "In job queue", job.data
-	setTimeout( () ->
-		logger.info "completed #{job.id}"
-		done()
-	, 10000)
+if cluster.isMaster
+
+	# Fork workers.
+	i = 0
+
+	while i < numCPUs
+		cluster.fork()
+		i++
+
+	cluster.on "exit", (worker, code, signal) ->
+		console.log "worker " + worker.process.pid + " died"
+		return
+else
+
+	logger.info "Worker starting"
+	jobs.process "email", (job, done) ->
+		logger.info "In job queue", job.data
+		setTimeout( () ->
+			logger.info "completed #{job.id}"
+			done(null, [0, 2, 4, 6])
+		, 500)
 
 process.once "SIGINT", (sig) ->
 	jobs.shutdown ((err) ->

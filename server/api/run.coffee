@@ -1,9 +1,11 @@
+cluster = require('cluster')
 winston = require 'winston'
 config = require "config"
 express = require 'express'
 bodyParser = require 'body-parser'
 morgan = require 'morgan'
 kue = require('kue')
+numCPUs = require('os').cpus().length
 jobs = kue.createQueue()
 
 process.title = "api"
@@ -41,20 +43,40 @@ api.get '/test', (req, res, next) ->
 		title: "welcome email for tj"
 		to: "tj@learnboost.com"
 		template: "welcome-email"
-	).save()
+	)
 
-	job.on 'complete', () ->
+	job.on 'complete', (result) ->
+		if res.finished
+			logger.info "is Finished"
+		else
+			logger.info "not finished"
 		logger.info "job with id #{job.id} completed"
+		logger.info result
 		res.status 200
 		res.send message: "OK"
+		res.end()
 
 	job.on 'failed', () ->
 		logger.info "job with id #{job.id} failed"
 		res.status 500
 		res.send message: "Error"
+	job.save()
 
-api.listen(3000)
-logger.info "API is running on port 3000"
+if cluster.isMaster
+
+	# Fork workers.
+	i = 0
+
+	while i < numCPUs
+		cluster.fork()
+		i++
+
+	cluster.on "exit", (worker, code, signal) ->
+		console.log "worker " + worker.process.pid + " died"
+		return
+else
+	api.listen(3000)
+	logger.info "API is running on port 3000"
 
 process.once "SIGINT", (sig) ->
 	jobs.shutdown ((err) ->
