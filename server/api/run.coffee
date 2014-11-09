@@ -2,6 +2,7 @@ cluster = require('cluster')
 winston = require 'winston'
 config = require "config"
 express = require 'express'
+http = require 'http'
 bodyParser = require 'body-parser'
 morgan = require 'morgan'
 kue = require('kue')
@@ -75,6 +76,7 @@ if cluster.isMaster
 		console.log "worker " + worker.process.pid + " died"
 		return
 else
+	http.globalAgent.maxSockets = 50
 	api.listen(3000)
 	logger.info "API is running on port 3000"
 
