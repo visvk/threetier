@@ -47,95 +47,97 @@ This is ApacheBench, Version 2.3 <$Revision: 1528965 $>
 
 ```
 Concurrency Level:      50
-Time taken for tests:   4.656 seconds
+Time taken for tests:   1.404 seconds
 Complete requests:      100
 Failed requests:        0
 Total transferred:      20900 bytes
 HTML transferred:       2100 bytes
-Requests per second:    21.48 [#/sec] (mean)
-Time per request:       2328.042 [ms] (mean)
-Time per request:       46.561 [ms] (mean, across all concurrent requests)
-Transfer rate:          4.38 [Kbytes/sec] received
+Requests per second:    71.22 [#/sec] (mean)
+Time per request:       702.070 [ms] (mean)
+Time per request:       14.041 [ms] (mean, across all concurrent requests)
+Transfer rate:          14.54 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    1   0.9      1       3
-Processing:   597 1763 557.0   2028    2609
-Waiting:      592 1763 557.2   2028    2609
-Total:        600 1764 556.3   2029    2610
+Connect:        0    1   0.7      1       2
+Processing:   513  651  88.6    619     801
+Waiting:      513  650  88.7    618     800
+Total:        513  651  89.1    619     801
 
 Percentage of the requests served within a certain time (ms)
-  50%   2029
-  66%   2040
-  75%   2054
-  80%   2107
-  90%   2447
-  95%   2471
-  98%   2598
-  99%   2610
- 100%   2610 (longest request)
+  50%    619
+  66%    716
+  75%    750
+  80%    763
+  90%    784
+  95%    792
+  98%    801
+  99%    801
+ 100%    801 (longest request)
+
 ```
 
 ### API (1 server) with Kue MQ (12 servers)
 ```
 Concurrency Level:      50
-Time taken for tests:   4.697 seconds
+Time taken for tests:   1.468 seconds
 Complete requests:      100
 Failed requests:        0
 Total transferred:      20900 bytes
 HTML transferred:       2100 bytes
-Requests per second:    21.29 [#/sec] (mean)
-Time per request:       2348.259 [ms] (mean)
-Time per request:       46.965 [ms] (mean, across all concurrent requests)
-Transfer rate:          4.35 [Kbytes/sec] received
+Requests per second:    68.12 [#/sec] (mean)
+Time per request:       733.972 [ms] (mean)
+Time per request:       14.679 [ms] (mean, across all concurrent requests)
+Transfer rate:          13.90 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    0   0.4      0       1
-Processing:   620 1784 553.1   2035    2649
-Waiting:      620 1784 553.1   2034    2649
-Total:        621 1785 552.8   2035    2649
+Connect:        0    1   0.7      1       2
+Processing:   573  697  57.7    689     784
+Waiting:      572  697  57.8    689     783
+Total:        573  698  58.1    690     784
 
 Percentage of the requests served within a certain time (ms)
-  50%   2035
-  66%   2046
-  75%   2053
-  80%   2162
-  90%   2459
-  95%   2488
-  98%   2638
-  99%   2649
- 100%   2649 (longest request)
+  50%    690
+  66%    741
+  75%    752
+  80%    761
+  90%    776
+  95%    783
+  98%    784
+  99%    784
+ 100%    784 (longest request)
+
 ```
 
 ### simple API (1 server) without Kue MQ and Cluster
 ```
 Concurrency Level:      50
-Time taken for tests:   1.080 seconds
+Time taken for tests:   1.116 seconds
 Complete requests:      100
 Failed requests:        0
 Total transferred:      20400 bytes
 HTML transferred:       1600 bytes
-Requests per second:    92.59 [#/sec] (mean)
-Time per request:       540.038 [ms] (mean)
-Time per request:       10.801 [ms] (mean, across all concurrent requests)
-Transfer rate:          18.44 [Kbytes/sec] received
+Requests per second:    89.61 [#/sec] (mean)
+Time per request:       557.960 [ms] (mean)
+Time per request:       11.159 [ms] (mean, across all concurrent requests)
+Transfer rate:          17.85 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    1   1.2      1       4
-Processing:   505  531  13.3    526     554
-Waiting:      505  531  13.3    526     554
-Total:        506  532  12.9    526     555
+Connect:        0    2   1.6      2       5
+Processing:   524  546  10.1    547     568
+Waiting:      523  546  10.1    547     568
+Total:        530  548   9.0    547     570
 
 Percentage of the requests served within a certain time (ms)
-  50%    526
-  66%    541
-  75%    542
-  80%    543
-  90%    548
-  95%    554
-  98%    555
-  99%    555
- 100%    555 (longest request)
+  50%    547
+  66%    553
+  75%    555
+  80%    556
+  90%    558
+  95%    561
+  98%    569
+  99%    570
+ 100%    570 (longest request)
  ```

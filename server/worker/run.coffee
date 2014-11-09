@@ -34,7 +34,7 @@ if cluster.isMaster
 else
 
 	logger.info "Worker starting"
-	jobs.process "email", (job, done) ->
+	jobs.process "email", 10, (job, done) ->
 		logger.info "In job queue", job.data
 		setTimeout( () ->
 			logger.info "completed #{job.id}"
