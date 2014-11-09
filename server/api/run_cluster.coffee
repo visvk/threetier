@@ -47,10 +47,6 @@ api.get '/test', (req, res, next) ->
 	)
 
 	job.on 'complete', (result) ->
-		if res.finished
-			logger.info "is Finished"
-		else
-			logger.info "not finished"
 		logger.info "job with id #{job.id} completed"
 		logger.info result
 		res.status 200
@@ -64,17 +60,15 @@ api.get '/test', (req, res, next) ->
 	job.save()
 
 if cluster.isMaster
-
 	# Fork workers.
 	i = 0
-
 	while i < numCPUs
 		cluster.fork()
 		i++
 
 	cluster.on "exit", (worker, code, signal) ->
 		console.log "worker " + worker.process.pid + " died"
-		return
+
 else
 	http.globalAgent.maxSockets = 50
 	api.listen(3000)
