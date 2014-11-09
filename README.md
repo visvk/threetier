@@ -43,8 +43,9 @@ Simple test with mocha in test/ directory.
 ab -n 100 -c 50 http://localhost:3000/test  
 This is ApacheBench, Version 2.3 <$Revision: 1528965 $>
 
-* API Cluster (4 servers) with Kue MQ (12 servers)
+### API Cluster (4 servers) with Kue MQ (12 servers)
 
+```
 Concurrency Level:      50
 Time taken for tests:   4.656 seconds
 Complete requests:      100
@@ -73,9 +74,10 @@ Percentage of the requests served within a certain time (ms)
   98%   2598
   99%   2610
  100%   2610 (longest request)
- 
-* API (1 server) with Kue MQ (12 servers)
+```
 
+### API (1 server) with Kue MQ (12 servers)
+```
 Concurrency Level:      50
 Time taken for tests:   4.697 seconds
 Complete requests:      100
@@ -104,9 +106,10 @@ Percentage of the requests served within a certain time (ms)
   98%   2638
   99%   2649
  100%   2649 (longest request)
+```
 
-* simple API (1 server) without Kue MQ and Cluster
-
+### simple API (1 server) without Kue MQ and Cluster
+```
 Concurrency Level:      50
 Time taken for tests:   1.080 seconds
 Complete requests:      100
@@ -135,3 +138,4 @@ Percentage of the requests served within a certain time (ms)
   98%    555
   99%    555
  100%    555 (longest request)
+ ```
