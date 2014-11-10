@@ -19,6 +19,13 @@ logger = new (winston.Logger)(
 
 global.logger = logger
 
+q = kue.createQueue(
+	prefix: "q"
+	redis:
+		port: 6379
+		host: '127.0.0.1'
+)
+
 if cluster.isMaster
 
 	# Fork workers.
@@ -34,7 +41,7 @@ if cluster.isMaster
 else
 
 	logger.info "Worker starting"
-	jobs.process "email", 10, (job, done) ->
+	jobs.process "email", 20, (job, done) ->
 		logger.info "In job queue", job.data
 		setTimeout( () ->
 			logger.info "completed #{job.id}"

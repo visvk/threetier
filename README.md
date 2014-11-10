@@ -15,11 +15,10 @@ Queue worker (Node.js with cluster)
 * Dependencies
 	- node.js
 	- coffeeScript
-	- npm
 	- redis
 
 * Install modules with npm
-In server/api and in server/dataTier run command
+In server/api and in server/worker run command
 	- npm install
 
 ##Run REST API (dev)
