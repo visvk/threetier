@@ -28,3 +28,18 @@
   content: "";
   padding: 0;
 }
+.navigationbar {
+  background: #8a8acb;
+  position: relative;
+  z-index: 1000;
+  min-height: 50px;
+  border: 1px solid transparent;
+}
+.navigationbar .inner-text {
+  color: #ffffff ;
+}
+
+.top-content {
+  background: #8a8acb;
+  color: #ffffff;
+}
