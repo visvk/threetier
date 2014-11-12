@@ -2,8 +2,11 @@ cluster = require('cluster')
 winston = require 'winston'
 config = require "config"
 kue = require("kue")
+http = require 'http'
 jobs = kue.createQueue()
 numCPUs = require('os').cpus().length
+
+http.globalAgent.maxSockets = 50
 
 process.title = "Data tier"
 

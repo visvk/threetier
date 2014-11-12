@@ -48,7 +48,7 @@ api.get '/test', (req, res, next) ->
 
 	job.on 'complete', (result) ->
 		logger.info "job with id #{job.id} completed"
-		logger.info result
+#		logger.info result
 		res.status 200
 		res.send message: "OK"
 		res.end()
