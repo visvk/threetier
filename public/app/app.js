@@ -3,22 +3,21 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
-  'myApp.view1',
+  'ngResource',
+  'myApp.main',
   'myApp.view2',
+  'myApp.apiServices',
   'myApp.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
-
-  // route for the home page
-  $routeProvider.when('/', {
-    templateUrl : 'view1/view1.html',
-    controller  : 'View1Ctrl'
+  $routeProvider.when('/main', {
+    templateUrl: 'partials/main.html',
+    controller: 'MainCtrl'
   });
-
-  // route for the about page
   $routeProvider.when('/view2', {
-    templateUrl : 'view2/view2.html',
-    controller  : 'View2Ctrl'
+    templateUrl: 'partials/view2.html',
+    controller: 'View2Ctrl'
   });
-  $routeProvider.otherwise({redirectTo: '/view1'});
+
+  $routeProvider.otherwise({redirectTo: '/main'});
 }]);

@@ -35,11 +35,17 @@
   min-height: 50px;
   border: 1px solid transparent;
 }
+#main {
+
+}
 .navigationbar .inner-text {
   color: #ffffff ;
 }
 
-.top-content {
+.top-content .purple{
   background: #8a8acb;
   color: #ffffff;
+}.top-content .white{
+  background: rgb(255, 255, 255);
+  color: #262626;
 }
