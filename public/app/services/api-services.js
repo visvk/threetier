@@ -1,6 +1,8 @@
 'use strict';
 
-var apiUrl = 'http://localhost:3000/';
+var clusterUrl = 'http://localhost:3000/';
+var noClusterUrl = 'http://localhost:3001/';
+var simpleUrl = 'http://localhost:3002/';
 
 angular.module('myApp.apiServices', ['ngResource'])
 	.factory('intervalService', function ($interval) {
@@ -16,11 +18,27 @@ angular.module('myApp.apiServices', ['ngResource'])
 			}
 		}
 	})
-	.factory('Test', ['$resource',
+	.factory('ClusterTest', ['$resource',
 		function ($resource) {
-			return $resource(apiUrl + 'test',
+			return $resource(clusterUrl + 'test',
 				{},
 				{
-					query: {method: 'GET', isArray: false }
+					query: {method: 'GET'}
+				});
+		}])
+	.factory('NoclusterTest', ['$resource',
+		function ($resource) {
+			return $resource(noClusterUrl + 'test',
+				{},
+				{
+					query: {method: 'GET'}
+				});
+		}])
+	.factory('SimpleTest', ['$resource',
+		function ($resource) {
+			return $resource(simpleUrl + 'test',
+				{},
+				{
+					query: {method: 'GET'}
 				});
 		}]);

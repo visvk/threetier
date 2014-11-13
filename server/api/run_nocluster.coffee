@@ -62,8 +62,8 @@ api.get '/test', (req, res, next) ->
 	job.save()
 
 http.globalAgent.maxSockets = 50
-api.listen(3000)
-logger.info "Simple API is running on port 3000"
+api.listen(3001)
+logger.info "Simple API is running on port 3001"
 
 process.once "SIGINT", (sig) ->
 	jobs.shutdown ((err) ->
