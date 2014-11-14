@@ -1,9 +1,29 @@
 <div class="top-content">
-  <div class="jumbotron purple text-center ">
-    <h1>Three tier application</h1>
-    <h2>Cloud Computing Patterns</h2>
-
-    <p>{{ name }}</p>
+  <div id="main-content" class="jumbotron purple text-center ">
+    <div id="main-body">
+      <h1>Three tier application</h1>
+      <h2 class="text-white ">Cloud Computing Patterns</h2>
+      <span class="icon-big">
+        <span class="tier-button-left">
+          <span class=""><i class="ion-monitor"></i></span>
+          <span class="tier-devices"><i class="ion-ipad"></i></span>
+          <span class="tier-devices"><i class="ion-iphone"></i></span>
+        </span>
+        <span class="tier-arrows">
+         <i class="ion-arrow-swap"></i>
+        </span>
+        <span class="tier-button-center">
+         <i class="ion-log-in"></i>
+        </span>
+        <span class="tier-arrows">
+         <i class="ion-arrow-swap"></i>
+        </span>
+        <span class="tier-button-right">
+         <i class="ion-android-storage"></i>
+        </span>
+      </span>
+      <div>{{ name }}</div>
+    </div>
   </div>
   <div class="jumbotron white text-center ">
     <button class="btn btn-default btn-lg purple" ng-click="clusterTest()">Cluster</button>

@@ -45,7 +45,47 @@
 .top-content .purple{
   background: #8a8acb;
   color: #ffffff;
-}.top-content .white{
+}
+.top-content .white{
   background: rgb(255, 255, 255);
   color: #262626;
+}
+
+.text-white {
+  color:  white;
+}
+.icon-big {
+  font-size: 9rem;
+}
+.tier-arrows {
+  padding-left: 3%;
+}
+.tier-devices {
+  margin-left: -38px;
+  background: #8a8acb;
+}
+.top-content .tier-button-left {
+  border-bottom: 5px solid #6D6DA2;
+  border-right: 5px solid #6D6DA2;
+  border-left: 1px solid #6D6DA2;
+  border-top: 1px solid #6D6DA2;
+  border-radius: 9px;
+  padding-left: 3%;
+}
+.top-content .tier-button-center {
+  border-bottom: 1px solid #6D6DA2;
+  border-right: 1px solid #6D6DA2;
+  border-left: 1px solid #6D6DA2;
+  border-top: 1px solid #6D6DA2;
+  border-radius: 9px;
+  padding-left: 3%;
+}
+.top-content .tier-button-right {
+  border-bottom: 5px solid #6D6DA2;
+  border-right: 1px solid #6D6DA2;
+  border-left: 5px solid #6D6DA2;
+  border-top: 1px solid #6D6DA2;
+  border-radius: 9px;
+  padding-right: 3%;
+  padding-left: 3%;
 }

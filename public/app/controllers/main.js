@@ -2,8 +2,16 @@
 
 angular.module('myApp.main', ['ngRoute'])
 
-.controller('MainCtrl', [ '$scope', '$q', 'ClusterTest', 'NoclusterTest', 'SimpleTest',
-    function($scope, $q, ClusterTest, NoclusterTest, SimpleTest) {
+.controller('MainCtrl', [ '$window', '$scope', '$q', 'ClusterTest', 'NoclusterTest', 'SimpleTest',
+    function($window, $scope, $q, ClusterTest, NoclusterTest, SimpleTest) {
+
+  // Set height of first main content
+  angular.element(document).ready(function () {
+    var height = $window.innerHeight;
+    document.getElementById("main-content").setAttribute("style","height:"+(height-50)+"px");
+    document.getElementById("main-body").setAttribute("style","padding-top:"+(height /18)+"px");
+  });
+
   $scope.name = "Viktor Sincak";
   $scope.message = "Ready to start";
   $scope.results = [];
