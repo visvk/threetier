@@ -11,11 +11,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="//net-dna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
-  <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+  <link href="lib/ionic/css/ionic.min.css" rel="stylesheet"/>
 
-	<link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
-  <link rel="stylesheet" href="app.css">
+	<link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css"/>
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css"/>
+  <link rel="stylesheet" href="app.css"/>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
@@ -30,7 +30,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="inner-text"><i class="fa fa-home inner-text"></i> Home</span></a></li>
         <li><a href="#/view1"><span class="inner-text"><i class="fa fa-shield inner-text"></i> About</span></a></li>
-        <li><a href="#/view2"><span class="inner-text"><i class="fa fa-comment inner-text"></i> Contact</span></a></li>
+        <li><a href="#/bench"><span class="inner-text"><i class="fa fa-comment inner-text"></i> Benchmark</span></a></li>
       </ul>
     </div>
   </nav>
@@ -42,18 +42,22 @@
   <div id="main">
     <div ng-view></div>
   </div>
+  <div id="footer">
+    <div class="container">
+      <div class="muted credit">Viktor Sincak 2014</div>
+
+    </div>
+  </div>
 
     <!-- In production use:
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
     -->
   <script src="bower_components/angular/angular.js"></script>
-  <!--<script src="lib/ionic/js/ionic.bundle.min.js"></script>-->
-  <!--<script src="lib/ionic/js/angular-sanitize.min.js"></script>-->
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-resource/angular-resource.min.js"></script>
   <script src="app.js"></script>
   <script src="controllers/main.js"></script>
-  <script src="controllers/view2.js"></script>
+  <script src="controllers/bench.js"></script>
   <script src="services/api-services.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>

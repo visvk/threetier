@@ -1,39 +1,90 @@
-<div class="top-content">
-  <div id="main-content" class="jumbotron purple text-center ">
-    <div id="main-body">
+<div class="top--content">
+  <div id="main--content" class="jumbotron text-center">
+    <!--<div id="main--body" class="">-->
       <h1>Three tier application</h1>
-      <h2 class="text-white ">Cloud Computing Patterns</h2>
-      <span class="icon-big">
-        <span class="tier-button-left">
-          <span class=""><i class="ion-monitor"></i></span>
-          <span class="tier-devices"><i class="ion-ipad"></i></span>
-          <span class="tier-devices"><i class="ion-iphone"></i></span>
+      <h2 class="">Cloud Computing Patterns</h2>
+      </br>
+      <div>
+        <a href="#/bench" class="btn btn-default btn-lg">Try it!</a>
+      </div>
+      <span class="row">
+        <span class="col-20 muted">
+          <span class="icon-big"><i class="ion-monitor"></i></span>
+          <span class="icon-big"><i class="ion-ipad"></i></span>
+          <span class="icon-big"><i class="ion-iphone"></i></span>
+          <div class="">
+            UI Tier
+          </div>
         </span>
-        <span class="tier-arrows">
-         <i class="ion-arrow-swap"></i>
+        <span class="muted col-20">
+         <i class="ion-arrow-swap icon-big"></i>
         </span>
-        <span class="tier-button-center">
-         <i class="ion-log-in"></i>
+        <span class="muted col-20">
+         <i class="ion-load-b icon-big"></i>
+          <div>Business Tier - API</div>
         </span>
-        <span class="tier-arrows">
-         <i class="ion-arrow-swap"></i>
+        <span class="muted col-20">
+         <i class="ion-arrow-swap icon-big"></i>
         </span>
-        <span class="tier-button-right">
-         <i class="ion-android-storage"></i>
+        <span class="muted col-20">
+         <i class="ion-social-buffer icon-big"></i>
+          <div>Data Tier</div>
         </span>
       </span>
-      <div>{{ name }}</div>
+    <!--</div>-->
+  </div>
+  <div class="tier--content row">
+    <div class="tier--column icon-medium col-33">
+      <span class=""><i class="ion-monitor"></i></span>
+      <span class=""><i class="ion-ipad"></i></span>
+      <span class=""><i class="ion-iphone"></i></span>
+      <span class="tier-description">
+        <h2>User Interface Tier</h2>
+        <div class="muted">
+          Simple front-end application powered by Angular.js.
+          </br>
+          This stateless tier provide loose coupling...
+          Communicate with Business tier over HTTP.
+        </div>
+      </span>
+    </div>
+    <div class="tier--column icon-medium col col-33">
+       <i class="ion-load-b"></i>
+      <span class="tier-description">
+        <h2>Business Tier - API</h2>
+        <div class="muted">
+          LightWeight REST Api guarantee stateless of this tier.
+          </br>
+          In this case, API creating jobs for data tier and sending response to UI tier.
+        </div>
+      </span>
+    </div>
+    <div class="tier--column icon-medium col col-33">
+       <i class="ion-social-buffer"></i>
+      <span class="tier-description">
+        <h2>Data Tier</h2>
+        <div class="muted">
+          Data tier receive job from API to provide data from databases, storage or 3rd parties.
+        </div>
+      </span>
     </div>
   </div>
-  <div class="jumbotron white text-center ">
-    <button class="btn btn-default btn-lg purple" ng-click="clusterTest()">Cluster</button>
-    <button class="btn btn-default btn-lg purple" ng-click="noclusterTest()">NoCluster</button>
-    <button class="btn btn-default btn-lg purple" ng-click="simpleTest()">Simple</button>
-    <h1>{{message}}</h1>
-    <!--<ul>-->
-      <!--<li ng-repeat="result in results">-->
-        <!--{{result}}-->
-      <!--</li>-->
-    <!--</ul>-->
-  </div>
+  <!--</br>-->
+  <!--<div class="tier--content white">-->
+    <!--<span class="tier-description">-->
+      <!--<h2>Business Tier - API</h2>-->
+      <!--<div>-->
+        <!--Description-->
+      <!--</div>-->
+    <!--</span>-->
+  <!--</div>-->
+  <!--</br>-->
+  <!--<div class="tier--content white">-->
+    <!--<span class="tier-description">-->
+      <!--<h2>Data Tier</h2>-->
+      <!--<div>-->
+        <!--Description-->
+      <!--</div>-->
+    <!--</span>-->
+  <!--</div>-->
 </div>

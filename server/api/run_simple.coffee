@@ -4,19 +4,9 @@ express = require 'express'
 http = require 'http'
 bodyParser = require 'body-parser'
 morgan = require 'morgan'
+logger = require './lib/logger'
 
 process.title = "api"
-
-logger = new (winston.Logger)(
-  transports: [
-    new winston.transports.Console
-      level: config.get("logger.console_log_level")
-      colorize: true
-      timestamp: true
-      handleExceptions: true
-  ]
-)
-global.logger = logger
 
 logger.info "Simple API starting"
 
@@ -35,6 +25,9 @@ api.use (req, res, next) ->
   next();
 
 api.get '/test', (req, res, next) ->
+  logger.info req.query.filter?.fields
+  logger.info req.query.filter?.asd
+  logger.info req.query
   email =
     title: "welcome email for tj"
     to: "tj@learnboost.com"

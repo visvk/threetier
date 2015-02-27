@@ -4,8 +4,9 @@
 angular.module('myApp', [
   'ngRoute',
   'ngResource',
+  //'angular-carousel',
   'myApp.main',
-  'myApp.view2',
+  'myApp.bench',
   'myApp.apiServices',
   'myApp.version'
 ]).
@@ -14,9 +15,9 @@ config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/main.html',
     controller: 'MainCtrl'
   });
-  $routeProvider.when('/view2', {
-    templateUrl: 'partials/view2.html',
-    controller: 'View2Ctrl'
+  $routeProvider.when('/bench', {
+    templateUrl: 'partials/bench.html',
+    controller: 'BenchCtrl'
   });
 
   $routeProvider.otherwise({redirectTo: '/main'});
