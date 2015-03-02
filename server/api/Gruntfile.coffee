@@ -3,6 +3,10 @@ module.exports = (grunt) ->
 		env:
 			dev:
 				NODE_ENV: 'development'
+				PORT: 3000
+			simple:
+				NODE_ENV: 'development'
+				PORT: 3002
 		mochaTest:
 			test:
 				options:
@@ -12,6 +16,7 @@ module.exports = (grunt) ->
 				src: ['test/**/*_test.coffee']
 
 	grunt.registerTask('test', ['env:dev', 'mochaTest']);
+	grunt.registerTask('test_simple', ['env:simple', 'mochaTest']);
 
 	grunt.loadNpmTasks('grunt-mocha-test');
 	grunt.loadNpmTasks('grunt-env');

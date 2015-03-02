@@ -2,19 +2,21 @@ request = require 'supertest'
 should = require 'should'
 async = require 'async'
 serverHelper = require '../helpers/server'
+config = require 'config'
 
 server = null
+ENV_PORT = process.env.PORT or config.main.listen_port
 
 describe 'Test Route', ->
-	url = 'http://localhost:3000'
+	url = 'http://localhost:' + ENV_PORT
 
-	before (done)->
-		server = serverHelper.createServer done
-
-	after (done)->
-		server.close()
-		console.log "test server closed"
-		done()
+#	before (done)->
+#		server = serverHelper.createServer done
+#
+#	after (done)->
+#		server.close()
+#		console.log "test server closed"
+#		done()
 
 	describe '#/test [GET] multiple times series', ->
 

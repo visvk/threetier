@@ -4,7 +4,10 @@ express = require 'express'
 http = require 'http'
 bodyParser = require 'body-parser'
 morgan = require 'morgan'
+socketio = require 'socket.io'
 logger = require './lib/logger'
+
+ENV_PORT = process.env.PORT or config.main.listen_port
 
 process.title = "api"
 
@@ -37,14 +40,35 @@ api.get '/test', (req, res, next) ->
     logger.info "route /test completed"
     logger.info [2, 4, 6, 8]
 
+
+    socketio = req.app.get('socketio')
+    message =
+      title: "AHOI"
+      body: "What's up?"
+
+    socketio.sockets.emit('TEST', message)
     res.status 200
     res.send message: "OK"
     res.end()
   , 500)
 
 http.globalAgent.maxSockets = 50
-api.listen(3002)
-logger.info "Simple API is running on port 3002"
+
+server = api.listen(ENV_PORT)
+io = socketio.listen(server)
+
+api.set('socketio', io)
+api.set('server', server)
+
+io.on 'connection', (socket) ->
+  socket.on 'my other event', (data) ->
+    logger.info data
+  socket.on 'test', (data) ->
+    logger.info "test, next -> test.response"
+    socket.emit('test.response', data)
+    socket.broadcast.emit('test.response', data)
+
+logger.info "Simple API is running on port #{ENV_PORT}"
 
 process.once "SIGINT", (sig) ->
   logger.info "API is shut down."
