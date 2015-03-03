@@ -5,9 +5,11 @@ http = require 'http'
 bodyParser = require 'body-parser'
 morgan = require 'morgan'
 socketio = require 'socket.io'
+redisSocket = require 'socket.io-redis'
 logger = require './lib/logger'
 
 ENV_PORT = process.env.PORT or config.main.listen_port
+
 
 process.title = "api"
 
@@ -55,7 +57,9 @@ api.get '/test', (req, res, next) ->
 http.globalAgent.maxSockets = 50
 
 server = api.listen(ENV_PORT)
+# socket.io conf
 io = socketio.listen(server)
+io.adapter redisSocket({ host: 'localhost', port: 6379 })
 
 api.set('socketio', io)
 api.set('server', server)
@@ -72,6 +76,7 @@ logger.info "Simple API is running on port #{ENV_PORT}"
 
 process.once "SIGINT", (sig) ->
   logger.info "API is shut down."
+#  io.
   process.exit 0
 
 

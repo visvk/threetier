@@ -12,6 +12,8 @@ module.exports =
 
 createServer = (done)->
   server = require('http').createServer(app)
+  require('../../socket_app')(app, server)
+
   server.listen '3000', (error, result)->
     if error
       done error

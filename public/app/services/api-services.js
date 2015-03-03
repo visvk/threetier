@@ -27,7 +27,6 @@ angular.module('myApp.apiServices', ['ngResource'])
     var ws = io.connect('http://localhost:3002');
 
 
-
     return {
       sendTest: function (cb) {
         ws.emit('test', {
