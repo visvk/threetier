@@ -37,28 +37,28 @@ q = kue.createQueue(
 
 
 start = () ->
-	if cluster.isMaster
+#	if cluster.isMaster
+#
+#		# Fork workers.
+#		i = 0
+#
+#		while i < 1
+#			cluster.fork()
+#			i++
+#
+#		cluster.on "exit", (worker, code, signal) ->
+#			console.log "worker " + worker.process.pid + " died"
+#			return
+#
+#	else
 
-		# Fork workers.
-		i = 0
-
-		while i < numCPUs
-			cluster.fork()
-			i++
-
-		cluster.on "exit", (worker, code, signal) ->
-			console.log "worker " + worker.process.pid + " died"
-			return
-
-	else
-
-		logger.info "Worker starting"
-		jobs.process "email", 20, (job, done) ->
-			logger.info "In job queue", job.data
-			setTimeout( () ->
-				logger.info "completed #{job.id}"
-				done(null, [0, 2, 4, 6])
-			, timeoutValue)
+  logger.info "Worker starting"
+  jobs.process "email", 20, (job, done) ->
+    logger.info "In job queue", job.data
+    setTimeout( () ->
+      logger.info "completed #{job.id}"
+      done(null, [0, 2, 4, 6])
+    , timeoutValue)
 
 process.once "SIGINT", (sig) ->
 	jobs.shutdown ((err) ->
