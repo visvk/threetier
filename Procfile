@@ -1,1 +1,1 @@
-web: coffee run.coffee
+web: coffee public/index.coffee
