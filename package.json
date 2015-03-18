@@ -3,6 +3,9 @@
   "description": "Angular+Express.js+Node.js worker",
   "author": "Viktor Sincak <viktor.sincak@gmail.com>",
   "version": "0.0.1",
+  "scripts": {
+    "start": "coffee run.coffee"
+  },
   "dependencies": {
     "async": "^0.9.0",
     "body-parser": "^1.10.0",
