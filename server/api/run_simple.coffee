@@ -58,19 +58,19 @@ http.globalAgent.maxSockets = 50
 
 server = api.listen(ENV_PORT)
 # socket.io conf
-io = socketio.listen(server)
-io.adapter redisSocket({ host: 'localhost', port: 6379 })
-
-api.set('socketio', io)
-api.set('server', server)
-
-io.on 'connection', (socket) ->
-  socket.on 'my other event', (data) ->
-    logger.info data
-  socket.on 'test', (data) ->
-    logger.info "test, next -> test.response"
-    socket.emit('test.response', data)
-    socket.broadcast.emit('test.response', data)
+#io = socketio.listen(server)
+#io.adapter redisSocket({ host: 'localhost', port: 6379 })
+#
+#api.set('socketio', io)
+#api.set('server', server)
+#
+#io.on 'connection', (socket) ->
+#  socket.on 'my other event', (data) ->
+#    logger.info data
+#  socket.on 'test', (data) ->
+#    logger.info "test, next -> test.response"
+#    socket.emit('test.response', data)
+#    socket.broadcast.emit('test.response', data)
 
 logger.info "Simple API is running on port #{ENV_PORT}"
 
