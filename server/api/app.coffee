@@ -5,9 +5,12 @@ bodyParser = require 'body-parser'
 morgan = require 'morgan'
 
 kue = require('kue')
+
+jobs = null
+
 if process.env.REDISTOGO_URL
-	console.log "aha"
 	rtg   = require("url").parse(process.env.REDISTOGO_URL)
+	console.log rtg
 	jobs = kue.createQueue(
 		prefix: "q"
 		redis:

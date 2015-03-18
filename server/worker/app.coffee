@@ -7,6 +7,7 @@ numCPUs = require('os').cpus().length
 
 if process.env.REDISTOGO_URL
 	rtg   = require("url").parse(process.env.REDISTOGO_URL)
+	console.log rtg
 	jobs = kue.createQueue(
 		prefix: "q"
 		redis:
