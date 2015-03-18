@@ -56,7 +56,7 @@ api.get '/test', (req, res, next) ->
 
 http.globalAgent.maxSockets = 50
 
-server = api.listen((process.env.PORT or 3000))
+server = api.listen(process.env.PORT or 3000)
 # socket.io conf
 #io = socketio.listen(server)
 #io.adapter redisSocket({ host: 'localhost', port: 6379 })
