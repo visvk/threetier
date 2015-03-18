@@ -3,6 +3,9 @@
   "description": "Angular+Express.js+Node.js worker",
   "author": "Viktor Sincak <viktor.sincak@gmail.com>",
   "version": "0.0.1",
+  "engines": {
+    "node": "0.10.x"
+  },
   "scripts": {
     "start": "coffee run.coffee"
   },
