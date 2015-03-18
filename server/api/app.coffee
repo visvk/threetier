@@ -5,10 +5,10 @@ bodyParser = require 'body-parser'
 morgan = require 'morgan'
 
 kue = require('kue')
-
+console.log process.env.REDISTOGO_URL
 if process.env.REDISTOGO_URL
 	rtg   = require("url").parse(process.env.REDISTOGO_URL)
-	jobs = kue.createQueue(
+	herok = kue.createQueue(
 		prefix: "q"
 		redis:
 			port: rtg.port
