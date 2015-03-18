@@ -8,7 +8,7 @@ socketio = require 'socket.io'
 redisSocket = require 'socket.io-redis'
 logger = require './lib/logger'
 
-ENV_PORT = process.env.PORT or config.main.listen_port or 3000
+ENV_PORT = process.env.PORT or config.main.listen_port
 
 
 process.title = "api"
@@ -56,7 +56,7 @@ api.get '/test', (req, res, next) ->
 
 http.globalAgent.maxSockets = 50
 
-server = api.listen(ENV_PORT)
+server = api.listen((process.env.PORT or 3000))
 # socket.io conf
 #io = socketio.listen(server)
 #io.adapter redisSocket({ host: 'localhost', port: 6379 })
