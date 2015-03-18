@@ -3,8 +3,24 @@ winston = require 'winston'
 config = require "config"
 kue = require("kue")
 http = require 'http'
-jobs = kue.createQueue()
 numCPUs = require('os').cpus().length
+
+if process.env.REDISTOGO_URL
+	rtg   = require("url").parse(process.env.REDISTOGO_URL)
+	jobs = kue.createQueue(
+		prefix: "q"
+		redis:
+			port: rtg.port
+			host: rtg.hostname
+			password: rtg.auth.split(":")[1]
+	)
+else
+	jobs = kue.createQueue(
+		prefix: "q"
+		redis:
+			port: 6379
+			host: '127.0.0.1'
+	)
 
 http.globalAgent.maxSockets = 50
 timeoutValue = process.env.worker_timeout or 500
@@ -28,12 +44,7 @@ module.exports =
 			process.exit 0
 		), 5000
 
-q = kue.createQueue(
-	prefix: "q"
-	redis:
-		port: 6379
-		host: '127.0.0.1'
-)
+
 
 
 start = () ->

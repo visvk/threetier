@@ -8,4 +8,4 @@ app.use(express.static(__dirname + '/app'))
 
 app.listen(process.env.PORT || 8080)
 
-console.log "api ide na dobrej ceste", process.env.PORT 
+console.log "api ide na dobrej ceste", process.env.PORT

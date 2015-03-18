@@ -5,7 +5,23 @@ bodyParser = require 'body-parser'
 morgan = require 'morgan'
 
 kue = require('kue')
-jobs = kue.createQueue()
+
+if process.env.REDISTOGO_URL
+	rtg   = require("url").parse(process.env.REDISTOGO_URL)
+	jobs = kue.createQueue(
+		prefix: "q"
+		redis:
+			port: rtg.port
+			host: rtg.hostname
+			password: rtg.auth.split(":")[1]
+	)
+else
+	jobs = kue.createQueue(
+		prefix: "q"
+		redis:
+			port: 6379
+			host: '127.0.0.1'
+	)
 
 process.title = "api"
 
