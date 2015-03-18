@@ -12,7 +12,7 @@ if process.env.REDISTOGO_URL
 		redis:
 			port: rtg.port
 			host: rtg.hostname
-			password: rtg.auth.split(":")[1]
+			auth: rtg.auth.split(":")[1]
 	)
 else
 	jobs = kue.createQueue(
