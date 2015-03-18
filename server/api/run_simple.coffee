@@ -8,7 +8,7 @@ socketio = require 'socket.io'
 redisSocket = require 'socket.io-redis'
 logger = require './lib/logger'
 
-ENV_PORT = process.env.PORT or config.main.listen_port
+ENV_PORT = process.env.PORT or config.main.listen_port or 3000
 
 
 process.title = "api"
