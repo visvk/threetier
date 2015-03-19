@@ -3,18 +3,24 @@ socketio = require 'socket.io'
 redisSocket = require 'socket.io-redis'
 
 module.exports = (app, server) ->
-  # socket.io conf
-  io = socketio.listen(server)
-  io.adapter redisSocket({host: 'localhost', port: 6379})
-  console.log "Socket server running"
+	# socket.io conf
+	io = socketio.listen(server)
+	if process.env.REDISTOGO_URL
+		rtg = require("url").parse(process.env.REDISTOGO_URL)
+		console.log rtg
+		io.adapter redisSocket({host: rtg.port, port: rtg.port, auth_pass: rtg.auth.split(":")[1]})
+	else
+		io.adapter redisSocket({host: 'localhost', port: 6379})
 
-  app.set('socketio', io)
-  app.set('server', server)
+	console.log "Socket server running"
 
-  io.on 'connection', (socket) ->
-    socket.on 'my other event', (data) ->
-      logger.info data
-    socket.on 'test', (data) ->
-      logger.info "test, next -> test.response"
-      socket.emit('test.response', data)
-      socket.broadcast.emit('test.response', data)
+	app.set('socketio', io)
+	app.set('server', server)
+
+	io.on 'connection', (socket) ->
+		socket.on 'my other event', (data) ->
+			logger.info data
+		socket.on 'test', (data) ->
+			logger.info "test, next -> test.response"
+			socket.emit('test.response', data)
+			socket.broadcast.emit('test.response', data)
