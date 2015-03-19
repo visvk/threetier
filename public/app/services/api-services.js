@@ -3,7 +3,7 @@ console.log(window.location);
 var clusterUrl = window.location.origin + '/';
 var noClusterUrl = 'http://localhost:3001/';
 var simpleUrl = window.location.origin+ '/';
-var simpleWS = 'wss://localhost:3002/data';
+var simpleWS = 'wss://'+ window.location.origin +'/data';
 
 angular.module('myApp.apiServices', ['ngResource'])
 	.factory('intervalService', function ($interval) {
@@ -24,7 +24,7 @@ angular.module('myApp.apiServices', ['ngResource'])
   .factory('Messages', function() {
     //var ws = $websocket(simpleWS);
     var collection = [];
-    var ws = io.connect('http://localhost:3002');
+    var ws = io.connect(window.location.origin);
 
 
     return {
