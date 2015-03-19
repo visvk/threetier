@@ -1,6 +1,7 @@
 cluster = require('cluster')
 app = require('./app').api
 http = require 'http'
+logger = require '../lib/logger'
 
 numCPUs = require('os').cpus().length
 

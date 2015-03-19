@@ -5,7 +5,7 @@ bodyParser = require 'body-parser'
 morgan = require 'morgan'
 socketio = require 'socket.io'
 redisSocket = require 'socket.io-redis'
-logger = require './lib/logger'
+logger = require '../lib/logger'
 
 ENV_PORT = process.env.PORT or config.main.listen_port
 
@@ -16,7 +16,7 @@ logger.info "Simple API starting"
 
 api = exports.api = express()
 api.use morgan('dev')
-app.use(express.static(__dirname + '/app'))
+api.use(express.static(__dirname + '/app'))
 api.use bodyParser.json()
 api.use bodyParser.urlencoded({ extended: true })
 
