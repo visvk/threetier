@@ -32,7 +32,7 @@ logger.info  "--UI tier starting--"
 
 api = exports.api = express()
 api.use morgan('dev', immediate: true)
-api.use(express.static(__dirname + '../public/app'))
+api.use(express.static(__dirname + './app'))
 api.use bodyParser.json()
 api.use bodyParser.urlencoded({extended: true})
 api.use(kue.app)
