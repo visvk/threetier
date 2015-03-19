@@ -17,7 +17,7 @@ if cluster.isMaster
 else
   http.globalAgent.maxSockets = 50
   server = app.listen(process.env.PORT or 3000)
-  require('./socket_app')(app, server)
+#  require('./socket_app')(app, server)
 
 logger.info "API is running on port 3000"
 
