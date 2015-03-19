@@ -43,12 +43,12 @@ api.get '/test', (req, res, next) ->
 		logger.info [2, 4, 6, 8]
 
 
-		#    socketio = req.app.get('socketio')
-		#    message =
-		#      title: "AHOI"
-		#      body: "What's up?"
-		#
-		#    socketio.sockets.emit('TEST', message)
+		socketio = req.app.get('socketio')
+		message =
+		  title: "AHOI"
+		  body: "What's up?"
+
+		socketio.sockets.emit('TEST', message)
 		res.status 200
 		res.send message: "OK"
 		res.end()

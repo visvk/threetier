@@ -18,7 +18,7 @@ numCPUs = require('os').cpus().length
 #else
 http.globalAgent.maxSockets = Infinity
 server = app.listen(process.env.PORT or 8080)
-#  require('./socket_app')(app, server)
+require('./socket_app')(app, server)
 
 logger.info "API is running on port #{process.env.PORT or 8080}"
 
