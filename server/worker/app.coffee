@@ -4,6 +4,7 @@ config = require "config"
 kue = require("kue")
 http = require 'http'
 numCPUs = require('os').cpus().length
+logger = require '../../lib/logger'
 
 if process.env.REDISTOGO_URL
 	rtg   = require("url").parse(process.env.REDISTOGO_URL)
@@ -26,16 +27,6 @@ else
 
 http.globalAgent.maxSockets = 50
 timeoutValue = process.env.worker_timeout or 500
-
-logger = new (winston.Logger)(
-	transports: [
-		new winston.transports.Console
-			level: config.get("logger.console_log_level")
-			colorize: true
-			timestamp: true
-			handleExceptions: true
-	]
-)
 
 module.exports =
 	start: () ->

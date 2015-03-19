@@ -4,6 +4,8 @@ express = require 'express'
 bodyParser = require 'body-parser'
 morgan = require 'morgan'
 
+logger = require '../../lib/logger'
+
 kue = require('kue')
 
 jobs = null
@@ -26,18 +28,6 @@ else
 	)
 
 process.title = "api"
-
-logger = new (winston.Logger)(
-  transports: [
-    new winston.transports.Console
-      level: config.get("logger.console_log_level")
-      colorize: true
-      timestamp: true
-      handleExceptions: true
-  ]
-)
-global.logger = logger
-
 logger.info "API starting"
 
 api = exports.api = express()

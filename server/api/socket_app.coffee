@@ -1,6 +1,7 @@
 # SOCKETIO
 socketio = require 'socket.io'
 redisSocket = require 'socket.io-redis'
+logger = require '../../lib/logger'
 
 module.exports = (app, server) ->
 	# socket.io conf

@@ -15,9 +15,9 @@ numCPUs = require('os').cpus().length
 #    console.log "worker " + worker.process.pid + " died"
 #
 #else
-http.globalAgent.maxSockets = 50
-server = app.listen(process.env.PORT or 3000)
+http.globalAgent.maxSockets = Infinity
+server = app.listen(process.env.PORT or 8080)
 #  require('./socket_app')(app, server)
 
-console.info "API is running on port #{process.env.PORT or 3000}"
+logger.info "API is running on port #{process.env.PORT or 8080}"
 
