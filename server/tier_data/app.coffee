@@ -23,7 +23,7 @@ businessToData = kue.createQueue({
 })
 
 
-http.globalAgent.maxSockets = 50
+http.globalAgent.maxSockets = Infinity
 timeoutValue = process.env.worker_timeout or 500
 
 
