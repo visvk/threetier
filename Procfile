@@ -1,3 +1,3 @@
-web: coffee public/index.coffee
+web: coffee public/server.coffee
 business: coffee run.coffee
 data: coffee server/worker/run.coffee
