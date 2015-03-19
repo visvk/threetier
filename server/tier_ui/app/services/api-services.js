@@ -1,8 +1,8 @@
 'use strict';
 console.log(window.location);
-var clusterUrl = window.location.origin + '/';
+var clusterUrl = window.location.origin + '/api/';
 var noClusterUrl = 'http://localhost:3001/';
-var simpleUrl = window.location.origin+ '/';
+var simpleUrl = window.location.origin+ '/api/';
 var simpleWS = 'wss://'+ window.location.origin +'/data';
 
 angular.module('myApp.apiServices', ['ngResource'])
