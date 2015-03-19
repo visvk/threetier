@@ -6,6 +6,7 @@ logger = require '../lib/logger'
 module.exports = (app, server) ->
 	# socket.io conf
 	io = socketio.listen(server)
+	
 	if process.env.REDISTOGO_URL
 		rtg = require("url").parse(process.env.REDISTOGO_URL)
 		io.adapter redisSocket({host: rtg.port, port: rtg.port, auth_pass: rtg.auth.split(":")[1]})
