@@ -5,25 +5,26 @@ serverHelper = require '../helpers/server'
 config = require 'config'
 
 server = null
-ENV_PORT = process.env.PORT or config.main.listen_port
+ENV_PORT = process.env.PORT or 8080
+console.log ENV_PORT
 
 describe 'Test Route', ->
 	url = 'http://localhost:' + ENV_PORT
 
-	before (done)->
-		server = serverHelper.createServer done
-
-	after (done)->
-		server.close()
-		console.log "test server closed"
-		done()
+#	before (done)->
+#		server = serverHelper.createServer done
+#
+#	after (done)->
+#		server.close()
+#		console.log "test server closed"
+#		done()
 
 	describe '#/test [GET] multiple times series', ->
 
 		async.each [0..2], (i) ->
 			it "should return 200 and Object of status ##{i} attempt", (done) ->
 				request(url)
-				.get("/test")
+				.get("/api/test")
 				.expect('Content-Type', /json/)
 				.expect(200)
 				.end ( err, res) ->

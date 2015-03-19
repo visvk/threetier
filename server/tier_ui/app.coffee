@@ -4,7 +4,7 @@ express = require 'express'
 bodyParser = require 'body-parser'
 morgan = require 'morgan'
 
-logger = require '../../lib/logger'
+logger = require '../lib/logger'
 
 kue = require('kue')
 
@@ -12,26 +12,27 @@ jobs = null
 
 if process.env.REDISTOGO_URL
 	rtg   = require("url").parse(process.env.REDISTOGO_URL)
-	jobs = kue.createQueue(
-		prefix: "q"
-		redis:
-			port: rtg.port
-			host: rtg.hostname
-			auth: rtg.auth.split(":")[1]
-	)
+	redisOptions =
+		port: rtg.port,
+		host: rtg.hostname,
+		auth: rtg.auth.split(":")[1]
 else
-	jobs = kue.createQueue(
-		prefix: "q"
-		redis:
-			port: 6379
-			host: '127.0.0.1'
-	)
+	redisOptions =
+		port: 6379
+		host: '127.0.0.1'
+
+uiToBusiness = kue.createQueue({
+	prefix: 'u2b',
+	redis: redisOptions
+})
+
 
 process.title = "api"
-logger.info "API starting"
+logger.info  "--UI tier starting--"
 
 api = exports.api = express()
-api.use morgan('dev')
+api.use morgan('dev', immediate: true)
+api.use(express.static(__dirname + '../../public/app'))
 api.use bodyParser.json()
 api.use bodyParser.urlencoded({extended: true})
 api.use(kue.app)
@@ -45,8 +46,8 @@ api.use (req, res, next) ->
   if ('OPTIONS' == req.method) then return res.status(200).send()
   next();
 
-api.get '/test', (req, res, next) ->
-  job = jobs.create("email",
+api.get '/api/test', (req, res, next) ->
+  job = uiToBusiness.create("email",
     title: "welcome email for tj"
     to: "tj@learnboost.com"
     template: "welcome-email"
@@ -67,14 +68,14 @@ api.get '/test', (req, res, next) ->
 
 
 process.once "SIGINT", (sig) ->
-  jobs.shutdown ((err) ->
+  uiToBusiness.shutdown ((err) ->
     logger.info "API is shut down.", err or ""
     process.exit 0
   ), 5000
 
 
 process.once "SIGTERM", (sig) ->
-  jobs.shutdown ((err) ->
+  uiToBusiness.shutdown ((err) ->
     logger.info "API is shut down.", err or ""
     process.exit 0
   ), 5000

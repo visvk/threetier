@@ -1,3 +1,3 @@
-api = require './server/api/run_cluster.coffee'
-#worker = require './server/worker/run'
-#angularApp = require './public/index'
+require './server/tier_ui/run.coffee'
+require './server/tier_business/run.coffee'
+require './server/tier_data/run.coffee'

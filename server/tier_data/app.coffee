@@ -4,40 +4,37 @@ config = require "config"
 kue = require("kue")
 http = require 'http'
 numCPUs = require('os').cpus().length
-logger = require '../../lib/logger'
+logger = require '../lib/logger'
 
 if process.env.REDISTOGO_URL
 	rtg   = require("url").parse(process.env.REDISTOGO_URL)
-	console.log rtg
-	jobs = kue.createQueue({
-		prefix: 'q',
-		redis: {
-			port: rtg.port,
-			host: rtg.hostname,
-			auth: rtg.auth.split(":")[1]
-		}
-	})
+	redisOptions =
+		port: rtg.port,
+		host: rtg.hostname,
+		auth: rtg.auth.split(":")[1]
 else
-	jobs = kue.createQueue(
-		prefix: "q"
-		redis:
-			port: 6379
-			host: '127.0.0.1'
-	)
+	redisOptions =
+		port: 6379
+		host: '127.0.0.1'
+
+businessToData = kue.createQueue({
+	prefix: 'b2d',
+	redis: redisOptions
+})
+
 
 http.globalAgent.maxSockets = 50
 timeoutValue = process.env.worker_timeout or 500
+
 
 module.exports =
 	start: () ->
 		start()
 	close: () ->
-		jobs.shutdown ((err) ->
-			logger.info "DataTier is shut down.", err or ""
+		businessToData.shutdown ((err) ->
+			logger.info "Data tier has shut down.", err or ""
 			process.exit 0
 		), 5000
-
-
 
 
 start = () ->
@@ -56,22 +53,24 @@ start = () ->
 #
 #	else
 
-	logger.info "Worker starting"
-	jobs.process "email", 20, (job, done) ->
-		logger.info "In job queue", job.data
+	logger.info  "--Data tier starting--"
+
+	businessToData.process "create email", 20, (job, done) ->
+		logger.info "In Data tier with job ", job.data
 		setTimeout( () ->
 			logger.info "completed #{job.id}"
 			done(null, [0, 2, 4, 6])
 		, timeoutValue)
 
+
 process.once "SIGINT", (sig) ->
-	jobs.shutdown ((err) ->
-		logger.info "Kue is shut down.", err or ""
+	businessToData.shutdown ((err) ->
+		logger.info "Data tier has shut down.", err or ""
 		process.exit 0
 	), 5000
 
 process.once "SIGTERM", (sig) ->
-	jobs.shutdown ((err) ->
-		logger.info "DataTier is shut down.", err or ""
+	businessToData.shutdown ((err) ->
+		logger.info "Data tier has shut down.", err or ""
 		process.exit 0
 	), 5000
