@@ -95,7 +95,7 @@ angular.module('myApp.apiServices', ['ngResource'])
   })
 	.factory('ClusterTest', ['$resource',
 		function ($resource) {
-			return $resource(clusterUrl + 'test',
+			return $resource(simpleUrl + 'test',
 				{},
 				{
 					query: {method: 'GET'}
@@ -103,7 +103,7 @@ angular.module('myApp.apiServices', ['ngResource'])
 		}])
 	.factory('NoclusterTest', ['$resource',
 		function ($resource) {
-			return $resource(noClusterUrl + 'test',
+			return $resource(simpleUrl + 'test',
 				{},
 				{
 					query: {method: 'GET'}
