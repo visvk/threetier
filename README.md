@@ -53,7 +53,7 @@ set NPM_CONFIG to false for install npm dev dependencies (bower)
 You must have RedisToGo addon and REDISTOGO_URL in heroku config
 
 ```
-git checkout -b heroku
+git checkout heroku
 heroku push heroku heroku:master
 heroku config:set NODE_ENV=production
 heroku config:set NPM_CONFIG_PRODUCTION=false
