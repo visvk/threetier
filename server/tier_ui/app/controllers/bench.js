@@ -37,13 +37,14 @@ angular.module('myApp.bench', ['ngRoute'])
     $scope.simpleTest = function () {
       $scope.message = "Starting Request to API"
       var t1 = new Date();
+      var counter = 0;
 
       for(var i = 0; i < 6; i++) {
         SimpleTest.query(function(data) {
           var t2 = new Date();
           var diff = t2 - t1;
           $scope.results.push(diff);
-          $scope.message = "Attempt: " + i + " status: " + data.message + " in " + diff + "ms.";
+          $scope.message = "Attempt: " + ++counter + " status: " + data.message + " in " + diff + "ms.";
         })
       }
     };

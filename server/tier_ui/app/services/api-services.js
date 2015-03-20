@@ -1,9 +1,7 @@
 'use strict';
-console.log(window.location);
-var clusterUrl = window.location.origin + '/api/';
-var noClusterUrl = 'http://localhost:3001/';
+//var localhost = 'http://localhost:8080/api';
 var simpleUrl = window.location.origin+ '/api/';
-var simpleWS = 'wss://'+ window.location.origin +'/data';
+//var simpleWS = 'wss://'+ window.location.origin +'/data';
 
 angular.module('myApp.apiServices', ['ngResource'])
 	.factory('intervalService', function ($interval) {
