@@ -35,6 +35,7 @@ angular.module('myApp.bench', ['ngRoute'])
       }
     }
     $scope.simpleTest = function () {
+      $scope.message = "Starting Request to API"
       var t1 = new Date();
 
       for(var i = 0; i < 6; i++) {
@@ -42,12 +43,13 @@ angular.module('myApp.bench', ['ngRoute'])
           var t2 = new Date();
           var diff = t2 - t1;
           $scope.results.push(diff);
-          $scope.message = data.message + " in " + diff + "ms.";
+          $scope.message = "Attempt: " + i + " status: " + data.message + " in " + diff + "ms.";
         })
       }
     };
 
     $scope.webSocketSimple = function () {
+      $scope.message = "Starting Request to SocketAPI"
       $scope.t1 = new Date();
 
       Messages.sendTest();
