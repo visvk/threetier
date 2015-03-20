@@ -5,28 +5,11 @@ bodyParser = require 'body-parser'
 morgan = require 'morgan'
 
 logger = require '../lib/logger'
+jobQueue = require '../lib/jobQueue'
+
+uiToBusiness = jobQueue.uiToBusiness
 
 kue = require('kue')
-
-jobs = null
-
-if process.env.REDISTOGO_URL
-	rtg   = require("url").parse(process.env.REDISTOGO_URL)
-	redisOptions =
-		port: rtg.port,
-		host: rtg.hostname,
-		auth: rtg.auth.split(":")[1]
-else
-	redisOptions =
-		port: 6379
-		host: '127.0.0.1'
-
-uiToBusiness = kue.createQueue({
-	prefix: 'u2b',
-	redis: redisOptions
-})
-uiToBusiness.on 'connect', ->
-	logger.info "Redis successful connection UI u2b"
 
 
 process.title = "api"
