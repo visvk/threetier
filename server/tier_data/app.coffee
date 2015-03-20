@@ -22,6 +22,8 @@ businessToData = kue.createQueue({
 	redis: redisOptions
 })
 
+businessToData.on 'connect', ->
+	logger.info "Redis successful connection DATA b2d"
 
 http.globalAgent.maxSockets = Infinity
 timeoutValue = process.env.worker_timeout or 500

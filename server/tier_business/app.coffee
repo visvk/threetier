@@ -28,6 +28,11 @@ businessToData = kue.createQueue({
 	redis: redisOptions
 })
 
+uiToBusiness.on 'connect', ->
+	logger.info "Redis successful connection BUSINESS U2B"
+
+businessToData.on 'connect', ->
+	logger.info "Redis successful connection BUSINESS b2d"
 
 module.exports =
 	start: () ->

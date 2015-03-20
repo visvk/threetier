@@ -25,6 +25,8 @@ uiToBusiness = kue.createQueue({
 	prefix: 'u2b',
 	redis: redisOptions
 })
+uiToBusiness.on 'connect', ->
+	logger.info "Redis successful connection UI u2b"
 
 
 process.title = "api"
