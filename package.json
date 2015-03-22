@@ -6,8 +6,9 @@
   "engines": {
     "node": "0.10.x"
   },
+  "main": "js/run.js",
   "scripts": {
-    "start": "coffee run.coffee",
+    "start": "node js/run.js",
     "postinstall": "bower install"
   },
   "dependencies": {
