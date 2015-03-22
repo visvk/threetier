@@ -67,8 +67,17 @@ Start Guide
 ```http://help.modulus.io/customer/portal/articles/1640060-getting-started-guide```
 
 ```
+git checkout modulus
 modulus env set REDISTOGO_URL redistogourlvalue
 modulus project restart
+```
+
+##Apfog (Not working yet)
+
+Install Appfog CLI
+
+```
+af push
 ```
 
 
