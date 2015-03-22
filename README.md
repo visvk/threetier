@@ -60,3 +60,16 @@ heroku config:set NPM_CONFIG_PRODUCTION=false
 heroku ps:scale bandd=1 
 ```
 
+###Modulus
+Dependencies: Redis instance(not available on modulus), Modulus CLI, Modulus basic plan with $15 free
+
+Start Guide 
+```http://help.modulus.io/customer/portal/articles/1640060-getting-started-guide```
+
+```
+modulus env set REDISTOGO_URL redistogourlvalue
+modulus project restart
+```
+
+
+
