@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #Three tier application architecture
 FrontEnd: Angular.js
 BackEnd: Node.js
@@ -82,3 +83,8 @@ af push
 
 
 
+=======
+The OpenShift `nodejs` cartridge documentation can be found at:
+
+http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+>>>>>>> adefcb5c6014025005720d15fad0f260fea0adfb
