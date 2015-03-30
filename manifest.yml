@@ -2,4 +2,12 @@
 language: nodejs
 
 applications:
-- name: threetier
+- name: web
+  command: node js/tier_ui/run.js
+  memory: 512M
+  host: threetier
+- name: worker
+  command: node js/run.js
+  memory: 512M
+  host: threetierapi
+  no-route: true
