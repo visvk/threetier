@@ -4,6 +4,7 @@ BackEnd: Node.js
 
 Tested on: 
 	- Heroku
+	- Modulus
 
 Referred to: 
 Christoph Fehling , Frank Leymann: Cloud Computing Patterns
@@ -61,7 +62,7 @@ heroku ps:scale bandd=1
 ```
 
 ###Modulus
-Dependencies: Redis instance(not available on modulus), Modulus CLI, Modulus basic plan with $15 free
+Dependencies: Redis instance(not available on modulus), Modulus CLI, Modulus basic plan
 
 Start Guide 
 ```
