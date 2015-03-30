@@ -171,8 +171,7 @@ defaults:
 # Environment options will override the default options above.
 #
 environments:
+  production_2:
+    branch: engineyard
 
-  # These options will only apply to the EXAMPLE_ENVIRONMENT environment.
-  #EXAMPLE_ENVIRONMENT:
-    #precompile_unchanged_assets: true
 
