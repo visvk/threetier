@@ -88,11 +88,24 @@ af push
 ```
 git checkout cloudfoundry-pivotal
 ```
-Download CF CLI
-
+Download CF CLI and type:
 ```
 cf login -a https://api.run.pivotal.io
+```
+set env-variables (REDISTOGO, TODO: add PWS Redis addon)
+```
+cf set-env web REDISTOGO_URL VALUE
+cf set-env worker REDISTOGO_URL VALUE
+```
+Deploy application (web and worker)
+
+```
 cf push
+```
+OR
+```
+cf push web
+cf push worker
 ```
 
 
