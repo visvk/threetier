@@ -7,7 +7,7 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "start": "coffee run.coffee",
+    "start": "node js/run.js",
     "postinstall": "bower install"
   },
   "dependencies": {
