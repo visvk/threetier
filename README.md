@@ -4,6 +4,7 @@ BackEnd: Node.js
 
 Tested on: 
 	- Heroku
+	- Modulus
 
 Referred to: 
 Christoph Fehling , Frank Leymann: Cloud Computing Patterns
@@ -59,4 +60,53 @@ heroku config:set NODE_ENV=production
 heroku config:set NPM_CONFIG_PRODUCTION=false
 heroku ps:scale bandd=1 
 ```
+
+###Modulus
+Dependencies: Redis instance(not available on modulus), Modulus CLI, Modulus basic plan
+
+Start Guide 
+```
+http://help.modulus.io/customer/portal/articles/1640060-getting-started-guide
+```
+
+```
+git checkout modulus
+modulus env set REDISTOGO_URL redistogourlvalue
+modulus project restart
+```
+
+##Apfog (Not working yet)
+
+Install Appfog CLI
+
+```
+af push
+```
+
+## Cloud Foundry - Pivotal web services
+
+```
+git checkout cloudfoundry-pivotal
+```
+Download CF CLI and type:
+```
+cf login -a https://api.run.pivotal.io
+```
+set env-variables (REDISTOGO, TODO: add PWS Redis addon)
+```
+cf set-env web REDISTOGO_URL VALUE
+cf set-env worker REDISTOGO_URL VALUE
+```
+Deploy application (web and worker)
+
+```
+cf push
+```
+OR
+```
+cf push web
+cf push worker
+```
+
+
 
