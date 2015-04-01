@@ -1,4 +1,4 @@
-web: coffee server/tier_ui/run.coffee
+web: coffee tier_ui/run.coffee
 bandd: coffee run.coffee
-business: coffee server/tier_business/run.coffee
-data: coffee server/tier_data/run.coffee
+business: coffee tier_business/run.coffee
+data: coffee tier_data/run.coffee
