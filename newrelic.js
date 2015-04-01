@@ -8,17 +8,17 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name : ['My Application'],
+  app_name : ['Three-tier-architecture'],
   /**
    * Your New Relic license key.
    */
-  license_key : '58d3cb26e1988431e65cacbefefbaba9ee2f3449',
+  license_key : process.env.NEW_RELIC_LICENSE_KEY,
   logging : {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
      * issues with the agent, 'info' and higher will impose the least overhead on
      * production applications.
      */
-    level : 'info'
+    level : process.env.NEW_RELIC_LOG
   }
 };
