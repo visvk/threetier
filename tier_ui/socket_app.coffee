@@ -9,7 +9,7 @@ module.exports = (app, server) ->
 
   if process.env.REDISTOGO_URL
     rtg = require("url").parse(process.env.REDISTOGO_URL)
-    io.adapter redisSocket({host: rtg.host, port: rtg.port, auth_pass: rtg.auth.split(":")[1]})
+    io.adapter redisSocket({host: rtg.hostname, port: rtg.port, auth_pass: rtg.auth.split(":")[1]})
   else
     io.adapter redisSocket({host: 'localhost', port: 6379})
 
