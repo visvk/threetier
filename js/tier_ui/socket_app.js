@@ -13,9 +13,8 @@
     io = socketio.listen(server);
     if (process.env.REDISTOGO_URL) {
       rtg = require("url").parse(process.env.REDISTOGO_URL);
-      logger.info(rtg);
       io.adapter(redisSocket({
-        host: rtg.port,
+        host: rtg.hostname,
         port: rtg.port,
         auth_pass: rtg.auth.split(":")[1]
       }));
