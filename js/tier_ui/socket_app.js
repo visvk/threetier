@@ -11,7 +11,12 @@
   module.exports = function(app, server) {
     var io, rtg;
     io = socketio.listen(server);
-    if (process.env.REDISTOGO_URL) {
+    if (process.env.DOREDIS_URL) {
+      io.adapter(redisSocket({
+        host: process.env.DOREDIS_URL,
+        port: 6379
+      }));
+    } else if (process.env.REDISTOGO_URL) {
       rtg = require("url").parse(process.env.REDISTOGO_URL);
       io.adapter(redisSocket({
         host: rtg.hostname,
