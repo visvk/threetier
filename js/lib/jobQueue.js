@@ -10,7 +10,7 @@
     rtg = require("url").parse(process.env.REDISTOGO_URL);
     redisOptions = {
       port: rtg.port,
-      host: rtg.hostname,
+      host: rtg.host,
       auth: rtg.auth.split(":")[1]
     };
   } else {

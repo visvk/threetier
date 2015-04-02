@@ -1,10 +1,13 @@
 #Three tier application architecture
 FrontEnd: Angular.js
 BackEnd: Node.js
+Server-server communication: Redis Job Queue (google: npm Kue)
 
 Tested on: 
 	- Heroku
 	- Modulus
+	- Cloud Foundry - Pivotal WS
+	- Exoscale
 
 Referred to: 
 Christoph Fehling , Frank Leymann: Cloud Computing Patterns
@@ -31,14 +34,20 @@ Node.js Job worker
 ##Run UI Tier
 
 * coffee tier_ui/run.coffee
+or 
+* node js/tier_ui/run.js
 
 ##Run Business Tier (dev)
 
 * coffee tier_business/run.coffee
+or 
+* node js/tier_business/run.js
 
 ##Run Data Tier (dev)
 
 * coffee tier_data/run.coffee
+or 
+* node js/tier_data/run.js
 
 ## Test
 You can test it with http://localhost:8080/api/test  in browser.
@@ -51,7 +60,8 @@ Non Functional test (Linux Apache HTTP server benchmarking tool):
 ###Heroku
 Dependencies: RedisToGo Addon, Heroku CLI, Heroku free plan
 set NPM_CONFIG to false for install npm dev dependencies (bower)
-You must have RedisToGo addon and REDISTOGO_URL in heroku config
+
+Set env-variables (REDISTOGO_URL or DOREDIS_URL)
 
 ```
 git checkout heroku
@@ -61,14 +71,14 @@ heroku config:set NPM_CONFIG_PRODUCTION=false
 heroku ps:scale bandd=1 
 ```
 
-###Modulus
+###Modulus (Not supporting web-worker model)
 Dependencies: Redis instance(not available on modulus), Modulus CLI, Modulus basic plan
 
 Start Guide 
 ```
 http://help.modulus.io/customer/portal/articles/1640060-getting-started-guide
 ```
-
+Set env-variables (REDISTOGO_URL or DOREDIS_URL)
 ```
 git checkout modulus
 modulus env set REDISTOGO_URL redistogourlvalue
@@ -108,5 +118,23 @@ cf push web
 cf push worker
 ```
 
+## Exoscale (Swiss cloud)
 
+Install exoapp cli and create app (threetier, exoscale branch)
 
+```
+https://github.com/exoscale/apps-documentation/blob/master/Platform%20Documentation.md
+```
+set env-variables (DOREDIS_URL redis instance URL, default port is 6379, or REDISTOGO_URL)
+```
+exoapp threetier/exoscale config.add DOREDIS_URL=value
+```
+
+Deploy app
+
+```
+exoapp threetier/exoscale push
+exoapp threetier/exoscale deploy
+exoapp threetier/exoscale worker.add business
+exoapp threetier/exoscale worker.add data
+```
