@@ -11,3 +11,13 @@ applications:
   memory: 512M
   host: threetierapi
   no-route: true
+- name: business
+  command: node js/tier_business/run.js
+  memory: 512M
+  host: threetierapi
+  no-route: true
+- name: data
+  command: node js/tier_data/run.js
+  memory: 512M
+  host: threetierapi
+  no-route: true

@@ -11,11 +11,15 @@
   module.exports = function(app, server) {
     var io, rtg;
     io = socketio.listen(server);
-    if (process.env.REDISTOGO_URL) {
-      rtg = require("url").parse(process.env.REDISTOGO_URL);
-      logger.info(rtg);
+    if (process.env.DOREDIS_URL) {
       io.adapter(redisSocket({
-        host: rtg.port,
+        host: process.env.DOREDIS_URL,
+        port: 6379
+      }));
+    } else if (process.env.REDISTOGO_URL) {
+      rtg = require("url").parse(process.env.REDISTOGO_URL);
+      io.adapter(redisSocket({
+        host: rtg.hostname,
         port: rtg.port,
         auth_pass: rtg.auth.split(":")[1]
       }));

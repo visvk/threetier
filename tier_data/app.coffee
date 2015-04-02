@@ -9,7 +9,7 @@ logger = require '../lib/logger'
 jobQueue = require '../lib/jobQueue'
 
 businessToData = jobQueue.businessToData
-timeoutValue = process.env.worker_timeout or 500
+timeoutValue = process.env.worker_timeout or 0
 
 
 module.exports =
