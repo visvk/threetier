@@ -20,7 +20,7 @@
 
   businessToData = jobQueue.businessToData;
 
-  timeoutValue = process.env.worker_timeout || 500;
+  timeoutValue = process.env.worker_timeout || 0;
 
   module.exports = {
     start: function() {

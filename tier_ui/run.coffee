@@ -1,3 +1,4 @@
+require('newrelic')
 cluster = require('cluster')
 app = require('./app').api
 http = require 'http'
