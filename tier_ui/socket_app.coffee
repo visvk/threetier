@@ -7,6 +7,10 @@ module.exports = (app, server) ->
   # socket.io conf
   io = socketio.listen(server)
 
+  if process.env.DOREDIS_URL
+    io.adapter redisSocket(
+      host: DOREDIS_URL
+      port: 6379)
   if process.env.REDISTOGO_URL
     rtg = require("url").parse(process.env.REDISTOGO_URL)
     io.adapter redisSocket(
