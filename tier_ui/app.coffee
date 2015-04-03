@@ -36,7 +36,7 @@ api.use (req, res, next) ->
 api.get '*', (req, res, next) ->
   logger.info "TU SOM"
   res.status 200
-  res.send loaderIoRoute
+  res.send process.env.LOADERIO_TOKEN
 
 #api.get '/api/test', (req, res, next) ->
 #  job = uiToBusiness.create("email",
