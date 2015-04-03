@@ -33,7 +33,7 @@ api.use (req, res, next) ->
   if ('OPTIONS' == req.method) then return res.status(200).send()
   next();
 
-api.get 'loaderio-f8d485c5e360ac42937b7ae8875cae7b/', (req, res, next) ->
+api.get 'cip', (req, res, next) ->
   logger.info "TU SOM"
   res.status 200
   res.send process.env.LOADERIO_TOKEN
