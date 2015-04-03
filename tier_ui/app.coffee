@@ -19,7 +19,7 @@ logger.info  "--UI tier starting--"
 
 api = exports.api = express()
 api.use morgan('dev', immediate: true)
-api.use(express.static(__dirname + '/app'))
+#api.use(express.static(__dirname + '/app'))
 api.use bodyParser.json()
 api.use bodyParser.urlencoded({extended: true})
 api.use(kue.app)
@@ -33,7 +33,7 @@ api.use (req, res, next) ->
   if ('OPTIONS' == req.method) then return res.status(200).send()
   next();
 
-api.get 'cip', (req, res, next) ->
+api.get loaderIoRoute, (req, res, next) ->
   logger.info "TU SOM"
   res.status 200
   res.send process.env.LOADERIO_TOKEN
