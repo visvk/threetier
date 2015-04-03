@@ -11,6 +11,13 @@
       port: 6379,
       host: process.env.DOREDIS_URL
     };
+  } else if (process.env.VCAP_SERVICES) {
+    var redisCloud = process.env.VCAP_SERVICES.rediscloud[0];
+    redisOptions = {
+      port: redisCloud.port,
+      host: redisCloud.hostname,
+      auth: redisCloud.password
+    };
   } else if (process.env.REDISTOGO_URL) {
     rtg = require("url").parse(process.env.REDISTOGO_URL);
     redisOptions = {
