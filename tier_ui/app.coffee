@@ -8,7 +8,7 @@ logger = require '../lib/logger'
 jobQueue = require '../lib/jobQueue'
 
 uiToBusiness = jobQueue.uiToBusiness
-loaderIoRoute = (process.env.LOADERIO_TOKEN or 'bad-route') + '/'
+loaderIoRoute = '/'+ (process.env.LOADERIO_TOKEN or 'bad-route') + '/'
 logger.info "================================ ", loaderIoRoute
 
 kue = require('kue')
@@ -33,7 +33,7 @@ api.use (req, res, next) ->
   if ('OPTIONS' == req.method) then return res.status(200).send()
   next();
 
-api.get 'loaderio-f8d485c5e360ac42937b7ae8875cae7b/', (req, res, next) ->
+api.get loaderIoRoute, (req, res, next) ->
   res.status 200
   res.send process.env.LOADERIO_TOKEN
 
