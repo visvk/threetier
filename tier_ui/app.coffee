@@ -33,9 +33,9 @@ api.use (req, res, next) ->
   if ('OPTIONS' == req.method) then return res.status(200).send()
   next();
 
-#api.get '*', (req, res, next) ->
-#  res.status 200
-#  res.send process.env.LOADERIO_TOKEN
+api.get 'loaderio-f8d485c5e360ac42937b7ae8875cae7b/', (req, res, next) ->
+  res.status 200
+  res.send process.env.LOADERIO_TOKEN
 
 api.get '/api/test', (req, res, next) ->
   job = uiToBusiness.create("email",
