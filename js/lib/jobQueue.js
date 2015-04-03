@@ -13,7 +13,7 @@
     };
   } else if (process.env.VCAP_SERVICES) {
     var services = JSON.parse(process.env.VCAP_SERVICES);
-    var redisCloud = services['rediscloud'][0];
+    var redisCloud = services['rediscloud'][0]['credentials'];
     redisOptions = {
       port: redisCloud.port,
       host: redisCloud.hostname,
