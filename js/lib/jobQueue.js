@@ -12,7 +12,8 @@
       host: process.env.DOREDIS_URL
     };
   } else if (process.env.VCAP_SERVICES) {
-    var redisCloud = process.env.VCAP_SERVICES.rediscloud[0];
+    var services = JSON.parse(process.env.VCAP_SERVICES);
+    var redisCloud = services['rediscloud'][0];
     redisOptions = {
       port: redisCloud.port,
       host: redisCloud.hostname,
