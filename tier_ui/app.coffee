@@ -9,7 +9,6 @@ jobQueue = require '../lib/jobQueue'
 
 uiToBusiness = jobQueue.uiToBusiness
 loaderIoRoute = '/'+ (process.env.LOADERIO_TOKEN or 'bad-route') + '/'
-logger.info "================================ ", loaderIoRoute
 
 kue = require('kue')
 
