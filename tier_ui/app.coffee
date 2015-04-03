@@ -8,6 +8,7 @@ logger = require '../lib/logger'
 jobQueue = require '../lib/jobQueue'
 
 uiToBusiness = jobQueue.uiToBusiness
+loaderIoRoute = '/'+ (process.env.LOADERIO_TOKEN or 'bad-route') + '/'
 
 kue = require('kue')
 
@@ -30,6 +31,10 @@ api.use (req, res, next) ->
   res.contentType 'application/json'
   if ('OPTIONS' == req.method) then return res.status(200).send()
   next();
+
+api.get loaderIoRoute, (req, res, next) ->
+  res.status 200
+  res.send process.env.LOADERIO_TOKEN
 
 api.get '/api/test', (req, res, next) ->
   job = uiToBusiness.create("email",
