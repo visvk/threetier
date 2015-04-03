@@ -33,30 +33,29 @@ api.use (req, res, next) ->
   if ('OPTIONS' == req.method) then return res.status(200).send()
   next();
 
-api.get '*', (req, res, next) ->
-  logger.info "TU SOM"
-  res.status 200
-  res.send process.env.LOADERIO_TOKEN
+#api.get '*', (req, res, next) ->
+#  res.status 200
+#  res.send process.env.LOADERIO_TOKEN
 
-#api.get '/api/test', (req, res, next) ->
-#  job = uiToBusiness.create("email",
-#    title: "welcome email for tj"
-#    to: "tj@learnboost.com"
-#    template: "welcome-email"
-#  )
-#
-#  job.on 'complete', (result) ->
-#    logger.info "job with id #{job.id} completed"
-#    #		logger.info result
-#    res.status 200
-#    res.send message: "OK"
-#    res.end()
-#
-#  job.on 'failed', () ->
-#    logger.info "job with id #{job.id} failed"
-#    res.status 500
-#    res.send message: "Error"
-#  job.save()
+api.get '/api/test', (req, res, next) ->
+  job = uiToBusiness.create("email",
+    title: "welcome email for tj"
+    to: "tj@learnboost.com"
+    template: "welcome-email"
+  )
+
+  job.on 'complete', (result) ->
+    logger.info "job with id #{job.id} completed"
+    #		logger.info result
+    res.status 200
+    res.send message: "OK"
+    res.end()
+
+  job.on 'failed', () ->
+    logger.info "job with id #{job.id} failed"
+    res.status 500
+    res.send message: "Error"
+  job.save()
 
 
 process.once "SIGINT", (sig) ->
