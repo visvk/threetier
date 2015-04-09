@@ -4,9 +4,6 @@ module.exports = (grunt) ->
       dev:
         NODE_ENV: 'development'
         PORT: 8080
-      simple:
-        NODE_ENV: 'development'
-        PORT: 8080
     mochaTest:
       test:
         options:
@@ -40,5 +37,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('test', ['env:dev', 'mochaTest']);
-  grunt.registerTask('test_simple', ['env:simple', 'mochaTest']);
   grunt.registerTask('compile', ['coffee', 'copy'])
