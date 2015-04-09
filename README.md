@@ -30,6 +30,11 @@ Node.js Job worker
 	- redis
 
 * Install modules with npm install
+
+* Compile coffee script to js/ folder
+```
+grunt compile
+```
 	
 ##Run UI Tier
 
