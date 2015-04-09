@@ -14,14 +14,14 @@ businessToData = jobQueue.businessToData
 
 
 module.exports =
-	start: () ->
-		start()
-	close: () ->
-		uiToBusiness.shutdown ((err) ->
-			businessToData.shutdown()
-			logger.info "Business tier has shut down.", err or ""
-			process.exit 0
-		), 5000
+  start: () ->
+    start()
+  close: () ->
+    uiToBusiness.shutdown ((err) ->
+      businessToData.shutdown()
+      logger.info "Business tier has shut down.", err or ""
+      process.exit 0
+    ), 5000
 
 
 start = () ->
@@ -39,36 +39,35 @@ start = () ->
 #			return
 #
 #	else
+  logger.info "--Business tier starting--"
 
-	logger.info "--Business tier starting--"
+  # Wait for messages from UI tier
+  uiToBusiness.process "email", 20, (job, done) ->
+    logger.info "In job queue", job.data
+    # Send message to Data Tier
+    createEmail = businessToData.create 'create email', job.data
 
-	# Wait for messages from UI tier
-	uiToBusiness.process "email", 20, (job, done) ->
-		logger.info "In job queue", job.data
-		# Send message to Data Tier
-		createEmail = businessToData.create 'create email', job.data
+    createEmail.on 'complete', (result) ->
+      logger.info "completed with data #{result}"
+      done(null, [0, 2, 4, 6])
 
-		createEmail.on 'complete', (result) ->
-			logger.info "completed with data #{result}"
-			done(null, [0, 2, 4, 6])
+    createEmail.on 'failed', ->
+      logger.info "failed"
+      done(null, [0, 2, 4, 6])
 
-		createEmail.on 'failed', ->
-			logger.info "failed"
-			done(null, [0, 2, 4, 6])
-
-		createEmail.save()
+    createEmail.save()
 
 
 process.once "SIGINT", (sig) ->
-	uiToBusiness.shutdown ((err) ->
-		businessToData.shutdown()
-		logger.info "Business tier has shut down.", err or ""
-		process.exit 0
-	), 5000
+  uiToBusiness.shutdown ((err) ->
+    businessToData.shutdown()
+    logger.info "Business tier has shut down.", err or ""
+    process.exit 0
+  ), 5000
 
 process.once "SIGTERM", (sig) ->
-	uiToBusiness.shutdown ((err) ->
-		businessToData.shutdown()
-		logger.info "Business tier has shut down.", err or ""
-		process.exit 0
-	), 5000
+  uiToBusiness.shutdown ((err) ->
+    businessToData.shutdown()
+    logger.info "Business tier has shut down.", err or ""
+    process.exit 0
+  ), 5000

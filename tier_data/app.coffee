@@ -13,13 +13,13 @@ timeoutValue = process.env.worker_timeout or 0
 
 
 module.exports =
-	start: () ->
-		start()
-	close: () ->
-		businessToData.shutdown ((err) ->
-			logger.info "Data tier has shut down.", err or ""
-			process.exit 0
-		), 5000
+  start: () ->
+    start()
+  close: () ->
+    businessToData.shutdown ((err) ->
+      logger.info "Data tier has shut down.", err or ""
+      process.exit 0
+    ), 5000
 
 
 start = () ->
@@ -37,25 +37,24 @@ start = () ->
 #			return
 #
 #	else
+  logger.info "--Data tier starting--"
 
-	logger.info  "--Data tier starting--"
-
-	businessToData.process "create email", 20, (job, done) ->
-		logger.info "In Data tier with job ", job.data
-		setTimeout( () ->
-			logger.info "completed #{job.id}"
-			done(null, [0, 2, 4, 6])
-		, timeoutValue)
+  businessToData.process "create email", 20, (job, done) ->
+    logger.info "In Data tier with job ", job.data
+    setTimeout(() ->
+      logger.info "completed #{job.id}"
+      done(null, [0, 2, 4, 6])
+    , timeoutValue)
 
 
 process.once "SIGINT", (sig) ->
-	businessToData.shutdown ((err) ->
-		logger.info "Data tier has shut down.", err or ""
-		process.exit 0
-	), 5000
+  businessToData.shutdown ((err) ->
+    logger.info "Data tier has shut down.", err or ""
+    process.exit 0
+  ), 5000
 
 process.once "SIGTERM", (sig) ->
-	businessToData.shutdown ((err) ->
-		logger.info "Data tier has shut down.", err or ""
-		process.exit 0
-	), 5000
+  businessToData.shutdown ((err) ->
+    logger.info "Data tier has shut down.", err or ""
+    process.exit 0
+  ), 5000
