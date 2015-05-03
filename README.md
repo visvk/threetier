@@ -1,4 +1,6 @@
 #Three tier application architecture
+GIT: https://github.com/visvk/threetier.git
+
 FrontEnd: Angular.js
 BackEnd: Node.js
 Server-server communication: Redis Job Queue (google: npm Kue)
